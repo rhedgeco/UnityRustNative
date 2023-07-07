@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="base" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-left: 8px; padding-right: 8px; padding-top: 8px; padding-bottom: 8px;">
+        <ui:TextField picking-mode="Ignore" label="Project Name" value="NewRustNativeProject" name="project-name" />
+        <ui:Button text="Create Project" display-tooltip-when-elided="true" name="create" />
+        <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="error-text" style="white-space: normal; color: rgb(255, 103, 103); -unity-font: url(&apos;project://database/Assets/RustNative/Editor/Fonts/JetBrainsMono-Regular.ttf?fileID=12800000&amp;guid=10795c4dd9775d927acbe4a75e5617c5&amp;type=3#JetBrainsMono-Regular&apos;); padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px;" />
+    </ui:VisualElement>
+</ui:UXML>

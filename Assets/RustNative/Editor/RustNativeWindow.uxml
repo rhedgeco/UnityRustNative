@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="base" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-left: 8px; padding-right: 8px; padding-top: 8px; padding-bottom: 8px;">
+        <ui:Button text="Refresh" display-tooltip-when-elided="true" name="refresh" style="align-self: flex-end; margin-bottom: 6px;" />
+        <ui:ListView name="project-list" selection-type="None" style="border-top-left-radius: 3px; border-bottom-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; padding-left: 8px; padding-right: 8px; padding-top: 8px; padding-bottom: 8px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; background-color: rgba(0, 0, 0, 0.39); overflow: hidden;" />
+        <ui:Button text="New Project" display-tooltip-when-elided="true" name="new-project" style="margin-top: 6px;" />
+        <ui:TextField picking-mode="Ignore" label="Cargo Location" name="cargo-location" style="margin-top: 8px;">
+            <ui:Button text="Find" display-tooltip-when-elided="true" name="cargo-find" />
+        </ui:TextField>
+        <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="error-text" style="-unity-font: url(&apos;project://database/Assets/RustNative/Editor/Fonts/JetBrainsMono-Regular.ttf?fileID=12800000&amp;guid=10795c4dd9775d927acbe4a75e5617c5&amp;type=3#JetBrainsMono-Regular&apos;); padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; color: rgb(255, 103, 103); white-space: normal;" />
+    </ui:VisualElement>
+</ui:UXML>
