@@ -116,20 +116,22 @@ public class RustNativeEditor : EditorWindow
             if (cargo.ExitCode != 0) throw new Exception(cargo.StandardError.ReadToEnd());
 
             EditorUtility.DisplayProgressBar($"Rebuilding '{projectName}' Bindings", "Copying library and bind files...", 0.9f);
-            string libraryName = $"lib{projectName}";
-            string libraryUnityName = $"{projectName}-{UnityEngine.Random.Range(100000, 999999)}";
             if (Directory.Exists(projectUnityDir)) Directory.Delete(projectUnityDir, true);
             Directory.CreateDirectory(projectUnityDir);
 
+            int randomId = UnityEngine.Random.Range(100000, 999999);
 #if UNITY_EDITOR_LINUX
-            string platformExtension = ".so";
+            string libraryFilename = $"lib{projectName}.so";
+            string libraryUnityFilename = $"{projectName}-{randomId}.so";
 #elif UNITY_EDITOR_WIN
-            string platformExtension = ".dll";
+            string libraryFilename = $"{projectName}.dll";
+            string libraryUnityFilename = $"{projectName}-{randomId}.dll";
 #endif
 
+            string libraryUnityName = $"{projectName}-{randomId}";
             string targetDir = Path.Join(projectDir, "target", "release");
-            string libraryPath = Path.Join(targetDir, $"{libraryName}{platformExtension}");
-            File.Copy(libraryPath, Path.Join(projectUnityDir, $"{libraryUnityName}{platformExtension}"));
+            string libraryPath = Path.Join(targetDir, libraryFilename);
+            File.Copy(libraryPath, Path.Join(projectUnityDir, libraryUnityFilename));
 
             string bindingFilename = $"{projectName}.cs";
             string bindingPath = Path.Join(Path.Join(projectDir, "bindings", "csharp"), bindingFilename);
