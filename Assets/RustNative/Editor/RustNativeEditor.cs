@@ -126,6 +126,9 @@ public class RustNativeEditor : EditorWindow
 #elif UNITY_EDITOR_WIN
             string libraryFilename = $"{projectName}.dll";
             string libraryUnityFilename = $"{projectName}-{randomId}.dll";
+#elif UNITY_EDITOR_OSX
+            string libraryFilename = $"lib{projectName}.dylib";
+            string libraryUnityFilename = $"{projectName}-{randomId}.dylib";
 #endif
 
             string libraryUnityName = $"{projectName}-{randomId}";
