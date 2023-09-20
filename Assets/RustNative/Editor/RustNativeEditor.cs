@@ -26,7 +26,7 @@ public class RustNativeEditor : EditorWindow
     [SerializeField] private VisualTreeAsset projectUXML;
 
     public static readonly string UnityFolder = Path.GetDirectoryName(Application.dataPath);
-    public static readonly string RustNativeFolder = Path.Join(UnityFolder, "RustNative");
+    public static readonly string RustNativeFolder = Path.Combine(UnityFolder, "RustNative");
 
     [MenuItem("Window/Rust Native Manager")]
     public static void ShowWindow()
@@ -88,8 +88,8 @@ public class RustNativeEditor : EditorWindow
 
         try
         {
-            string projectDir = Path.Join(RustNativeFolder, projectName);
-            string projectUnityDir = Path.Join(Application.dataPath, "RustNative", projectName);
+            string projectDir = Path.Combine(RustNativeFolder, projectName);
+            string projectUnityDir = Path.Combine(Application.dataPath, "RustNative", projectName);
 
             EditorUtility.DisplayProgressBar($"Rebuilding '{projectName}' Bindings", "Building library...", 0.4f);
             Process cargo = new Process();
@@ -129,13 +129,13 @@ public class RustNativeEditor : EditorWindow
 #endif
 
             string libraryUnityName = $"{projectName}-{randomId}";
-            string targetDir = Path.Join(projectDir, "target", "release");
-            string libraryPath = Path.Join(targetDir, libraryFilename);
-            File.Copy(libraryPath, Path.Join(projectUnityDir, libraryUnityFilename));
+            string targetDir = Path.Combine(projectDir, "target", "release");
+            string libraryPath = Path.Combine(targetDir, libraryFilename);
+            File.Copy(libraryPath, Path.Combine(projectUnityDir, libraryUnityFilename));
 
             string bindingFilename = $"{projectName}.cs";
-            string bindingPath = Path.Join(Path.Join(projectDir, "bindings", "csharp"), bindingFilename);
-            string bindingUnityPath = Path.Join(projectUnityDir, bindingFilename);
+            string bindingPath = Path.Combine(Path.Combine(projectDir, "bindings", "csharp"), bindingFilename);
+            string bindingUnityPath = Path.Combine(projectUnityDir, bindingFilename);
             string bindingText = File.ReadAllText(bindingPath);
             bindingText = bindingText.Replace($"public const string NativeLib = \"{projectName}\";", $"public const string NativeLib = \"{libraryUnityName}\";");
             File.WriteAllText(bindingUnityPath, bindingText);
@@ -196,7 +196,7 @@ public class RustNativeEditor : EditorWindow
 
 public class RustNativeConfig
 {
-    public static readonly string ConfigLocation = Path.Join(RustNativeEditor.RustNativeFolder, "config.json");
+    public static readonly string ConfigLocation = Path.Combine(RustNativeEditor.RustNativeFolder, "config.json");
 
     [SerializeField] private string cargoLocation;
 
