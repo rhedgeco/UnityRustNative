@@ -33,22 +33,22 @@ public class RustNativeNewProjectEditor : EditorWindow
         try
         {
             EditorUtility.DisplayProgressBar("Creating New Rust Native Project", "Extracting template...", 0.2f);
-            string projectTemplateZip = Path.Join(Path.Join(Application.dataPath, "RustNative", "Editor"), "template_rust_library.zip");
+            string projectTemplateZip = Path.Combine(Path.Combine(Application.dataPath, "RustNative", "Editor"), "template_rust_library.zip");
             ZipFile.ExtractToDirectory(projectTemplateZip, RustNativeEditor.RustNativeFolder);
 
             EditorUtility.DisplayProgressBar("Creating New Rust Native Project", "Renaming template...", 0.5f);
-            string templateDir = Path.Join(RustNativeEditor.RustNativeFolder, "template_rust_library");
-            string projectDir = Path.Join(RustNativeEditor.RustNativeFolder, projectName);
+            string templateDir = Path.Combine(RustNativeEditor.RustNativeFolder, "template_rust_library");
+            string projectDir = Path.Combine(RustNativeEditor.RustNativeFolder, projectName);
             Directory.Move(templateDir, projectDir);
 
             EditorUtility.DisplayProgressBar("Creating New Rust Native Project", "Updating Cargo TOML...", 0.6f);
-            string tomlFile = Path.Join(projectDir, "Cargo.toml");
+            string tomlFile = Path.Combine(projectDir, "Cargo.toml");
             string tomlText = File.ReadAllText(tomlFile);
             tomlText = tomlText.Replace("template_rust_library", projectName);
             File.WriteAllText(tomlFile, tomlText);
 
             EditorUtility.DisplayProgressBar("Creating New Rust Native Project", "Updating binding generator...", 0.7f);
-            string testFile = Path.Join(projectDir, "tests", "bindings.rs");
+            string testFile = Path.Combine(projectDir, "tests", "bindings.rs");
             string testText = File.ReadAllText(testFile);
             testText = testText.Replace("template_rust_library", projectName);
             File.WriteAllText(testFile, testText);
@@ -56,7 +56,7 @@ public class RustNativeNewProjectEditor : EditorWindow
         catch (Exception e)
         {
             EditorUtility.ClearProgressBar();
-            Directory.Delete(Path.Join(RustNativeEditor.RustNativeFolder, "template_rust_library"));
+            Directory.Delete(Path.Combine(RustNativeEditor.RustNativeFolder, "template_rust_library"));
             return e.Message;
         }
 
