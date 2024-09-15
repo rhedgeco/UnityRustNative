@@ -116,7 +116,7 @@ public class RustNativeEditor : EditorWindow
             if (cargo.ExitCode != 0) throw new Exception(cargo.StandardError.ReadToEnd());
 
             EditorUtility.DisplayProgressBar($"Rebuilding '{projectName}' Bindings", "Copying library and bind files...", 0.9f);
-            if (Directory.Exists(projectUnityDir)) Directory.Delete(projectUnityDir, true);
+            if (Directory.Exists(projectUnityDir)) AssetDatabase.DeleteAsset(projectUnityDir);
             Directory.CreateDirectory(projectUnityDir);
 
             int randomId = UnityEngine.Random.Range(100000, 999999);
