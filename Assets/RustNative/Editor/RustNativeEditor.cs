@@ -146,7 +146,7 @@ public class RustNativeEditor : EditorWindow
         catch (Exception e)
         {
             EditorUtility.ClearProgressBar();
-            Debug.LogError($"Rust Native Rebuild Binding Error: {e.Message}");
+            Debug.LogError($"Rust Native Rebuild Binding Error: {e.Message} {e.StackTrace}");
             return;
         }
 
